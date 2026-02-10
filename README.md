@@ -244,8 +244,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Twitter/X**: [@VoidDrillersX](https://x.com/VoidDrillersX)
 
 ### Telegram Channels
-- **Signal Channel**: [BASECRAB Signals](https://t.me/+-1003798473585)
-- **Trading Group**: [BASECRAB Traders](https://t.me/+5190892852)
+- **Main Channel**: [BASECRAB](https://t.me/BASECRAB)
+- **Trading Group**: [BASECRAB Traders](https://t.me/+_CbpqhcoQIpkMDM0)
 
 ---
 
