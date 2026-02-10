@@ -76,6 +76,26 @@ class BaseCrabServer {
             console.log(`   Dashboard: http://${this.config.host}:${this.config.port}`);
             console.log(`   Chains: Base, Ethereum, BNB, Solana, Zora`);
             console.log(`   Data: DEX Screener, Birdeye, DEXTV, Pump.fun\n`);
+            
+            // Auto-open browser on Windows
+            if (process.platform === 'win32') {
+                require('child_process').exec(`start http://${this.config.host}:${this.config.port}`);
+            }
+        });
+        
+        this.server.on('error', (err) => {
+            if (err.code === 'EADDRINUSE') {
+                console.log(`⚠️  Port ${this.config.port} is in use. Trying port ${this.config.port + 1}...`);
+                this.config.port = this.config.port + 1;
+                this.server.listen(this.config.port, this.config.host, () => {
+                    console.log(`\n🦀 BASECRAB Trading Bot v3.0.0`);
+                    console.log(`   Dashboard: http://${this.config.host}:${this.config.port}`);
+                    console.log(`   (Port auto-changed from ${this.config.port - 1})\n`);
+                    if (process.platform === 'win32') {
+                        require('child_process').exec(`start http://${this.config.host}:${this.config.port}`);
+                    }
+                });
+            }
         });
     }
     

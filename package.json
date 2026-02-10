@@ -7,6 +7,7 @@
     "dev": "node server.js",
     "start": "node server.js",
     "setup": "node setup.js",
+    "open": "node server.js && start http://localhost:3000",
     "install": "npm install express socket.io cors axios dotenv uuid",
     "test": "echo BASECRAB system ready! Run npm start to launch.",
     "push": "git add -A && git commit -m 'Update' && git push origin master"
