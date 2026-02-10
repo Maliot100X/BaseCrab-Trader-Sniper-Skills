@@ -4,6 +4,24 @@
 
 ---
 
+## 🎨 Brand Assets
+
+![BASECRAB Logo](assets/logo.png)
+
+### Supported Chains & Tokens
+| Chain | Icon | Native Token |
+|-------|------|--------------|
+| Base | ![Base](assets/tokens/base.png) | ETH |
+| Ethereum | ![Ethereum](assets/tokens/eth.png) | ETH |
+| BNB Chain | ![BNB](assets/tokens/bnb.png) | BNB |
+| Solana | ![Solana](assets/tokens/sol.png) | SOL |
+| Zora | ![Zora](assets/tokens/zora.png) | ETH |
+
+### Character Mascot
+![BASECRAB Mascot](assets/mascot.png)
+
+---
+
 ## 🎯 What is BASECRAB?
 
 BASECRAB is a professional trading intelligence system that monitors markets in real-time, identifies high-probability trading opportunities, and optionally executes trades automatically. It integrates multiple data sources and supports 5 blockchain networks.
