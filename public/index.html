@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🦀 BASECRAB - Trading Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="icon.png" type="image/png">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <img src="logo.png" alt="BASECRAB" class="logo-img">
+                <span class="logo-text">BASECRAB</span>
+            </div>
+            <div class="status">
+                <span class="status-indicator" id="statusIndicator"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary" id="startBtn">🚀 Start Bot</button>
+                <button class="btn btn-danger" id="stopBtn">🛑 Stop</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <button class="nav-item active" data-tab="dashboard">📊 Dashboard</button>
+                    <button class="nav-item" data-tab="scanner">🔍 Scanner</button>
+                    <button class="nav-item" data-tab="trading">💰 Trading</button>
+                    <button class="nav-item" data-tab="wallets">👛 Wallets</button>
+                    <button class="nav-item" data-tab="settings">⚙️ Settings</button>
+                    <button class="nav-item" data-tab="logs">📋 Logs</button>
+                </nav>
+                
+                <!-- Token Tickers -->
+                <div class="tickers">
+                    <div class="ticker ticker-base">
+                        <img src="tokens/base.png" alt="Base">
+                        <span>Base ETH</span>
+                        <span class="price" id="basePrice">---</span>
+                    </div>
+                    <div class="ticker ticker-eth">
+                        <img src="tokens/eth.png" alt="Ethereum">
+                        <span>Ethereum</span>
+                        <span class="price" id="ethPrice">---</span>
+                    </div>
+                    <div class="ticker ticker-bnb">
+                        <img src="tokens/bnb.png" alt="BNB">
+                        <span>BNB Chain</span>
+                        <span class="price" id="bnbPrice">---</span>
+                    </div>
+                    <div class="ticker ticker-sol">
+                        <img src="tokens/sol.png" alt="Solana">
+                        <span>Solana</span>
+                        <span class="price" id="solPrice">---</span>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Content Area -->
+            <div class="content-area">
+                <!-- Dashboard Tab -->
+                <section class="tab-content active" id="dashboard">
+                    <h2>📊 Trading Dashboard</h2>
+                    
+                    <!-- Stats Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🎯</div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="signalsToday">0</span>
+                                <span class="stat-label">Signals Today</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="winningTrades">0</span>
+                                <span class="stat-label">Winning Trades</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="totalPnl">$0.00</span>
+                                <span class="stat-label">Total P&L</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🔥</div>
+                            <div class="stat-info">
+                                <span class="stat-value" id="winRate">0%</span>
+                                <span class="stat-label">Win Rate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Signals -->
+                    <div class="panel">
+                        <h3>🎯 Live Signals</h3>
+                        <div class="signals-list" id="liveSignals">
+                            <div class="empty-state">No signals yet. Start the bot to begin scanning.</div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Trades -->
+                    <div class="panel">
+                        <h3>📈 Recent Trades</h3>
+                        <div class="trades-list" id="recentTrades">
+                            <div class="empty-state">No trades executed yet.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Scanner Tab -->
+                <section class="tab-content" id="scanner">
+                    <h2>🔍 Market Scanner</h2>
+                    
+                    <!-- Scanner Controls -->
+                    <div class="scanner-controls">
+                        <div class="chain-selector">
+                            <button class="chain-btn active" data-chain="base">Base</button>
+                            <button class="chain-btn" data-chain="ethereum">Ethereum</button>
+                            <button class="chain-btn" data-chain="bnb">BNB</button>
+                            <button class="chain-btn" data-chain="solana">Solana</button>
+                            <button class="chain-btn" data-chain="zora">Zora</button>
+                        </div>
+                        <div class="scanner-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="scanPumpFun" checked>
+                                Pump.fun Tokens
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="scanDexScreener" checked>
+                                DEX Screener
+                            </label>
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="scanBirdeye" checked>
+                                Birdeye
+                            </label>
+                            <button class="btn btn-primary" id="scanNow">🔄 Scan Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Scanner Results -->
+                    <div class="scanner-results" id="scannerResults">
+                        <div class="empty-state">Click "Scan Now" to search for opportunities.</div>
+                    </div>
+                </section>
+
+                <!-- Trading Tab -->
+                <section class="tab-content" id="trading">
+                    <h2>💰 Auto-Trading</h2>
+                    
+                    <!-- Auto-Scalp Settings -->
+                    <div class="panel">
+                        <h3>⚡ Auto-Scalp Configuration</h3>
+                        <div class="settings-grid">
+                            <div class="setting-item">
+                                <label>Min Confidence %</label>
+                                <input type="number" id="minConfidence" value="80" min="50" max="99">
+                            </div>
+                            <div class="setting-item">
+                                <label>Position Size ($)</label>
+                                <input type="number" id="positionSize" value="100" min="10" max="10000">
+                            </div>
+                            <div class="setting-item">
+                                <label>Take Profit %</label>
+                                <input type="number" id="takeProfit" value="50" min="5" max="500">
+                            </div>
+                            <div class="setting-item">
+                                <label>Stop Loss %</label>
+                                <input type="number" id="stopLoss" value="10" min="1" max="50">
+                            </div>
+                            <div class="setting-item">
+                                <label>Slippage %</label>
+                                <input type="number" id="slippage" value="5" min="1" max="50">
+                            </div>
+<div class="setting-item">
+                                <label>Max Daily Trades</label>
+                                <input type="number" id="maxDailyTrades" value="20" min="1" max="100">
+                            </div>
+                        </div>
+                        <div class="setting-item-full">
+                            <label>Auto-Buy when signal confidence > </label>
+                            <input type="range" id="autoBuyThreshold" min="70" max="99" value="85">
+                            <span id="autoBuyValue">85%</span>
+                        </div>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="autoBuyEnabled">
+                            Enable Auto-Buy (Requires funded wallet)
+                        </label>
+                    </div>
+
+                    <!-- Active Positions -->
+                    <div class="panel">
+                        <h3>📊 Active Positions</h3>
+                        <div class="positions-list" id="activePositions">
+                            <div class="empty-state">No active positions.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Wallets Tab -->
+                <section class="tab-content" id="wallets">
+                    <h2>👛 Wallet Management</h2>
+                    
+                    <!-- Add Wallet -->
+                    <div class="panel">
+                        <h3>➕ Add Wallet</h3>
+                        <div class="wallet-form">
+                            <select id="walletChain">
+                                <option value="base">Base</option>
+                                <option value="ethereum">Ethereum</option>
+                                <option value="bnb">BNB Chain</option>
+                                <option value="solana">Solana</option>
+                                <option value="zora">Zora</option>
+                            </select>
+                            <input type="text" id="walletPrivateKey" placeholder="Private Key (shown once)">
+                            <button class="btn btn-primary" id="addWallet">Add Wallet</button>
+                        </div>
+                        <p class="warning">⚠️ Private key will be shown ONCE. Store securely.</p>
+                    </div>
+
+                    <!-- Wallet List -->
+                    <div class="panel">
+                        <h3>📋 Connected Wallets</h3>
+                        <div class="wallets-list" id="walletsList">
+                            <div class="empty-state">No wallets connected.</div>
+                        </div>
+                    </div>
+
+                    <!-- Balances -->
+                    <div class="panel">
+                        <h3>💰 Balances</h3>
+                        <div class="balances-list" id="balancesList">
+                            <div class="empty-state">No wallet balances to display.</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Tab -->
+                <section class="tab-content" id="settings">
+                    <h2>⚙️ Configuration</h2>
+                    
+                    <!-- AI Configuration -->
+                    <div class="panel">
+                        <h3>🤖 AI Provider Settings</h3>
+                        <div class="settings-grid">
+                            <div class="setting-item">
+                                <label>Provider</label>
+                                <select id="aiProvider">
+                                    <option value="openai">OpenAI</option>
+                                    <option value="anthropic">Anthropic Claude</option>
+                                    <option value="minimax">MiniMax</option>
+                                    <option value="deepseek">DeepSeek</option>
+                                    <option value="groq">Groq</option>
+                                </select>
+                            </div>
+                            <div class="setting-item-full">
+                                <label>API Key</label>
+                                <input type="password" id="aiApiKey" placeholder="Enter your API key">
+                            </div>
+                            <div class="setting-item">
+                                <label>Model</label>
+                                <input type="text" id="aiModel" placeholder="e.g., gpt-4, claude-3-opus">
+                            </div>
+                            <div class="setting-item">
+                                <label>Max Tokens</label>
+                                <input type="number" id="aiMaxTokens" value="4096">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Telegram Configuration -->
+                    <div class="panel">
+                        <h3>📱 Telegram Settings</h3>
+                        <div class="settings-grid">
+                            <div class="setting-item-full">
+                                <label>Bot Token</label>
+                                <input type="text" id="telegramBotToken" placeholder="123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11">
+                            </div>
+                            <div class="setting-item-full">
+                                <label>Signal Channel ID</label>
+                                <input type="text" id="telegramChannelId" placeholder="-1001234567890">
+                            </div>
+                            <div class="setting-item-full">
+                                <label>Trading Group ID</label>
+                                <input type="text" id="telegramGroupId" placeholder="-1001234567890">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RPC Configuration -->
+                    <div class="panel">
+                        <h3>🔗 RPC Endpoints (Free Public)</h3>
+                        <div class="rpc-grid">
+                            <div class="rpc-item">
+                                <label>Base</label>
+                                <input type="text" id="rpcBase" value="https://base-mainnet.public.blastapi.io">
+                            </div>
+                            <div class="rpc-item">
+                                <label>Ethereum</label>
+                                <input type="text" id="rpcEthereum" value="https://eth.public-rpc.com">
+                            </div>
+                            <div class="rpc-item">
+                                <label>BNB Chain</label>
+                                <input type="text" id="rpcBnb" value="https://bsc.publicnode.com">
+                            </div>
+                            <div class="rpc-item">
+                                <label>Solana</label>
+                                <input type="text" id="rpcSolana" value="https://api.mainnet-beta.solana.com">
+                            </div>
+                            <div class="rpc-item">
+                                <label>Zora</label>
+                                <input type="text" id="rpcZora" value="https://rpc.zora.energy">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Data Sources -->
+                    <div class="panel">
+                        <h3>📊 Data Sources</h3>
+                        <div class="data-sources">
+                            <div class="source-item">
+                                <span class="source-name">DEX Screener</span>
+                                <span class="source-status active">✅ Active</span>
+                            </div>
+                            <div class="source-item">
+                                <span class="source-name">Birdeye</span>
+                                <span class="source-status active">✅ Active</span>
+                            </div>
+                            <div class="source-item">
+                                <span class="source-name">DEXTV</span>
+                                <span class="source-status active">✅ Active</span>
+                            </div>
+                            <div class="source-item">
+                                <span class="source-name">Pump.fun (BNB)</span>
+                                <span class="source-status active">✅ Active</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-large" id="saveSettings">💾 Save All Settings</button>
+                </section>
+
+                <!-- Logs Tab -->
+                <section class="tab-content" id="logs">
+                    <h2>📋 System Logs</h2>
+                    <div class="logs-container" id="logsContainer">
+                        <div class="empty-state">No logs yet.</div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span>🦀 BASECRAB v3.0.0 - Production Trading System</span>
+            <span class="footer-links">
+                <a href="https://x.com/VoidDrillersX" target="_blank">@VoidDrillersX</a>
+                <a href="https://t.me/BASECRAB" target="_blank">Telegram</a>
+            </span>
+            <span>Made with ❤️ by VoidDrillersX</span>
+        </footer>
+    </div>
+
+    <script src="socket.io.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

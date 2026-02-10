@@ -1,14 +1,14 @@
 {
   "name": "basecrab-trader-sniper-skills",
-  "version": "2.1.0",
-  "description": "🦀 BASECRAB - Global Autonomous Trading Intelligence Agent. Production-grade cross-chain trading system.",
-  "main": "index.js",
+  "version": "3.0.0",
+  "description": "🦀 BASECRAB - Global Autonomous Trading Intelligence Agent. Production-grade cross-chain trading system with auto-scalping AI.",
+  "main": "server.js",
   "scripts": {
-    "dev": "echo '🚀 BASECRAB Quick Start' && echo '========================' && echo '1. cp .env.example .env' && echo '2. Add your AI API key, Telegram Bot Token' && echo '3. openclaw skills import skills/' && echo '4. openclaw run basecrab' && echo '' && echo 'Bot activates instantly on Telegram!'",
-    "start": "openclaw run basecrab",
-    "setup": "cp .env.example .env && echo '.env created! Add your keys.'",
-    "import": "openclaw skills import skills/",
-    "test": "echo '✅ BASECRAB ready!' && echo 'Set your AI API key in .env'",
+    "dev": "node server.js",
+    "start": "node server.js",
+    "setup": "node setup.js",
+    "install": "npm install express socket.io cors axios dotenv uuid",
+    "test": "echo BASECRAB system ready! Run npm start to launch.",
     "push": "git add -A && git commit -m 'Update' && git push origin master"
   },
   "keywords": [
@@ -24,10 +24,15 @@
     "trading-intelligence",
     "autonomous-trading",
     "market-scanner",
-    "whale-tracking"
+    "whale-tracking",
+    "auto-scalping",
+    "dex-screener",
+    "pump-fun",
+    "birdeye",
+    "scalping"
   ],
   "author": "VoidDrillersX",
-  "license": "Premium",
+  "license": "Proprietary",
   "repository": {
     "type": "git",
     "url": "https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills.git"
@@ -38,5 +43,13 @@
   "homepage": "https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills",
   "engines": {
     "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "axios": "^1.13.5",
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "socket.io": "^4.8.3",
+    "uuid": "^9.0.1"
   }
 }

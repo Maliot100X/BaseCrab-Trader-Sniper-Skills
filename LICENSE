@@ -1,36 +1,88 @@
-# BASECRAB Premium License
+================================================================================
+                    BASECRAB TRADING SYSTEM - PREMIUM LICENSE
+================================================================================
 
 Copyright (c) 2026 VoidDrillersX - All Rights Reserved
 
-## Permission Granted
+DEVELOPER: @VoidDrillersX (https://x.com/VoidDrillersX)
+PROJECT: BASECRAB - Global Autonomous Trading Intelligence Agent
+REPO: https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills
+LICENSE: Premium/Proprietary
 
-This is a PREMIUM LICENSE for BASECRAB Trading Intelligence System.
+================================================================================
+                              USAGE RIGHTS
+================================================================================
 
-## Usage Rights
+✓ ALLOWED:
+  • Personal use on any number of devices
+  • Commercial deployment for own trading operations
+  • Modification and customization of source code
+  • Integration with personal infrastructure
+  • Running on local machines and servers
+  • Connection to any supported blockchain networks
+  • Use with any AI API provider (OpenAI, Anthropic, MiniMax, etc.)
+  • Creating derivative works for personal use
+  • Sharing configuration files (.env format) without private keys
 
-- Personal use: ✅ ALLOWED
-- Commercial use: ✅ ALLOWED
-- Modification: ✅ ALLOWED
-- Distribution: ✅ ALLOWED
-- Private deployment: ✅ ALLOWED
+✗ NOT ALLOWED:
+  • Reselling the system as-is without significant modifications
+  • Claiming ownership of BASECRAB brand or logo
+  • Using for illegal trading activities
+  • Redistributing compiled binaries without permission
+  • Publishing private keys or credentials
 
-## Restrictions
+================================================================================
+                           DISCLAIMER
+================================================================================
 
-- ❌ Reselling as-is without significant modification
-- ❌ Claiming ownership of BASECRAB brand
-- ❌ Using for illegal activities
+BASECRAB IS A TRADING INTELLIGENCE TOOL.
 
-## Disclaimer
-
-BASECRAB is a trading intelligence tool. Use at your own risk.
+Trading cryptocurrencies and digital assets involves substantial risk of loss.
 Past performance does not guarantee future results.
-Always do your own research before trading.
 
-## Support
+The developers and contributors are NOT responsible for:
+  • Financial losses incurred while using this software
+  • Trading decisions made based on signals from this system
+  • Smart contract vulnerabilities or exploits
+  • API downtime or connectivity issues
+  • Market volatility or sudden price movements
 
-- Developer: [@VoidDrillersX](https://x.com/VoidDrillersX)
-- Telegram: https://t.me/BASECRAB
+ALWAYS:
+  • Do your own research (DYOR)
+  • Start with small position sizes
+  • Set proper stop-loss levels
+  • Never invest more than you can afford to lose
+  • Test strategies on testnets before mainnet deployment
 
----
+================================================================================
+                          SUPPORT & CONTACT
+================================================================================
 
-Made with ❤️ by VoidDrillersX
+Developer: @VoidDrillersX
+GitHub: https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills
+Telegram: https://t.me/BASECRAB
+
+For support, feature requests, or custom development, contact the developer.
+
+================================================================================
+                              SPONSORS
+================================================================================
+
+Supported Blockchains:
+  • Base (base.png)
+  • Ethereum (eth.png)
+  • BNB Chain (bnb.png)
+  • Solana (sol.png)
+  • Zora (zora.png)
+
+Data Sources:
+  • DEX Screener - Token prices & liquidity
+  • Birdeye - Multi-chain data
+  • DEXTV - Trading volumes
+  • Pump.fun - BNB meme coins
+
+================================================================================
+
+MADE WITH ❤️ BY VoidDrillersX
+
+================================================================================
