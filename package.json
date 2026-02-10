@@ -1,14 +1,14 @@
 {
   "name": "basecrab-trader-sniper-skills",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "🦀 BASECRAB - Global Autonomous Trading Intelligence Agent. Production-grade cross-chain trading system.",
   "main": "index.js",
   "scripts": {
-    "dev": "echo '🚀 BASECRAB Quick Start' && echo '========================' && echo '1. Copy .env.example to .env.local' && echo '2. Add your Telegram Bot Token and API keys' && echo '3. Run: openclaw skills import skills/' && echo '4. Run: openclaw run basecrab' && echo '' && echo 'Bot will activate instantly on your Telegram!' && echo '' && echo 'For full setup, see README.md'",
+    "dev": "echo '🚀 BASECRAB Quick Start' && echo '========================' && echo '1. cp .env.example .env' && echo '2. Add your AI API key, Telegram Bot Token' && echo '3. openclaw skills import skills/' && echo '4. openclaw run basecrab' && echo '' && echo 'Bot activates instantly on Telegram!'",
     "start": "openclaw run basecrab",
-    "setup": "npm run dev",
-    "import-skills": "openclaw skills import skills/",
-    "test": "echo 'Testing BASECRAB configuration...' && echo 'All files ready!'",
+    "setup": "cp .env.example .env && echo '.env created! Add your keys.'",
+    "import": "openclaw skills import skills/",
+    "test": "echo '✅ BASECRAB ready!' && echo 'Set your AI API key in .env'",
     "push": "git add -A && git commit -m 'Update' && git push origin master"
   },
   "keywords": [
@@ -27,7 +27,7 @@
     "whale-tracking"
   ],
   "author": "VoidDrillersX",
-  "license": "MIT",
+  "license": "Premium",
   "repository": {
     "type": "git",
     "url": "https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills.git"

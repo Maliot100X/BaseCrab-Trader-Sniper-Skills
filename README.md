@@ -147,4 +147,14 @@ MIT License - See LICENSE file
 
 **🦀 BASECRAB: Wait. Confirm. Strike.**
 
+---
+
+## 📱 Connect With Us
+
+- **Developer**: [@VoidDrillersX](https://x.com/VoidDrillersX)
+- **Telegram Channel**: [BASECRAB](https://t.me/BASECRAB)
+- **Telegram Group**: [Trading Group](https://t.me/+_CbpqhcoQIpkMDM0)
+
+---
+
 Made with ❤️ by VoidDrillersX
