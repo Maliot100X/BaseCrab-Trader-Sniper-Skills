@@ -1,5 +1,6 @@
 <div align="center">
 
+<img src="assets/mascot_avatar.png" alt="BASECRAB Mascot" width="150" height="150">
 <img src="assets/logo.png" alt="BASECRAB Logo" width="200" height="200">
 
 # 🦀 BASECRAB
@@ -9,7 +10,7 @@
 **Production-Grade • Cross-Chain • Real-Capital Trading System**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-blue.svg)](https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills)
+[![Version: 2.0.0](https://img.shields.io/badge/Version-2.0.0-blue.svg)](https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills)
 [![OpenClaw Ready](https://img.shields.io/badge/OpenClaw-Ready-green.svg)](https://openclaw.ai)
 
 ---
@@ -136,12 +137,22 @@ MIN_BUY_SIZE_USD=10.0
 | `/scan` | Scan markets for opportunities |
 | `/analyze <TOKEN>` | Deep analysis of specific token |
 | `/whales <TOKEN>` | Track whale movements |
+| `/wallets` | View all wallet balances |
+| `/wallets <CHAIN>` | Check balance for specific chain |
+| `/wallets preview` | Preview private key (⚠️ YOUR OWN RISK) |
+| `/wallets deposit` | Get deposit address |
+| `/chains` | Show all supported chains |
+| `/chains create <CHAIN>` | Create wallet for chain |
+| `/chains create all` | Create wallets for all chains |
+| `/settings slipage [n]` | Set slippage tolerance (default: 5%) |
+| `/settings autotrade on/off` | Enable/disable autonomous trading |
 | `/risk set` | Configure risk parameters |
 | `/status` | Current market status |
 | `/autotrade on/off` | Enable/disable autonomous trading |
 | `/create` | Generate new encrypted wallet |
 | `/basecrabTrade` | Execute trade (requires confirmation) |
 | `/BaseLocal` | Restrict analysis to Base chain |
+| `/help` | Show all available commands |
 
 ### Signal Output Format
 
@@ -162,7 +173,16 @@ BASECRAB/
 ├── assets/                 # Visual assets
 │   ├── logo.png           # Main logo
 │   ├── banner.png         # Banner image
-│   └── icon.png           # Telegram icon
+│   ├── icon.png           # Telegram icon
+│   ├── mascot.png         # Character mascot
+│   ├── mascot_avatar.png  # Mascot avatar
+│   └── tokens/            # Token icons
+│       ├── eth.png        # Ethereum
+│       ├── base.png       # Base
+│       ├── bnb.png        # BNB Chain
+│       ├── sol.png        # Solana
+│       ├── zora.png       # Zora
+│       └── generic.png    # Generic token
 ├── config/                # Configuration files
 │   └── .env.local         # Local environment (SECURE)
 ├── docs/                  # Documentation
@@ -170,7 +190,9 @@ BASECRAB/
 │   ├── basecrab.md        # Main agent skill
 │   ├── scan.md            # Market scanner
 │   ├── analyze.md         # Token analyzer
-│   └── whales.md          # Whale tracker
+│   ├── whales.md          # Whale tracker
+│   ├── wallets.md         # Wallet management
+│   └── chains.md          # Multi-chain wallet creation
 ├── .env.example           # Environment template (GITHUB SAFE)
 ├── .gitignore            # Git ignore rules
 ├── README.md             # This file
@@ -216,10 +238,25 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## 🌐 Connect With Us
+
+### Developer
+- **Twitter/X**: [@VoidDrillersX](https://x.com/VoidDrillersX)
+
+### Telegram Channels
+- **Signal Channel**: [BASECRAB Signals](https://t.me/+-1003798473585)
+- **Trading Group**: [BASECRAB Traders](https://t.me/+5190892852)
+
+---
+
 <div align="center">
 
 **🦀 BASECRAB: Wait. Confirm. Strike.**
 
 *Built for professional traders. Powered by AI.*
+
+---
+
+Made with ❤️ by VoidDrillersX
 
 </div>
