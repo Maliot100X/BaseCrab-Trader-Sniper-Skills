@@ -52,6 +52,9 @@ class BaseCrabDashboard {
             // Signals
             this.socket.on('signal', (s) => this.addSignal(s));
             
+            // AI Hunter signals
+            this.socket.on('aiHunterSignal', (s) => this.addAIHunterSignal(s));
+            
             // Whale signals
             this.socket.on('whaleSignal', (s) => this.addWhaleSignal(s));
             
@@ -115,6 +118,15 @@ class BaseCrabDashboard {
         });
         document.getElementById('scanBtn').addEventListener('click', () => this.scanMarket());
         
+        // AI Hunter
+        document.querySelectorAll('#ai-hunter .chain-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('#ai-hunter .chain-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+            });
+        });
+        document.getElementById('aiHuntBtn').addEventListener('click', () => this.startAIHunt());
+        
         // Whale Watch
         document.getElementById('addWhaleBtn').addEventListener('click', () => this.addWhale());
         
@@ -144,19 +156,25 @@ class BaseCrabDashboard {
             aiApiKey: document.getElementById('aiApiKey').value,
             aiProvider: document.getElementById('aiProvider').value,
             aiModel: document.getElementById('aiModel').value,
+            birdeyeApiKey: document.getElementById('birdeyeApiKey').value,
             telegramBotToken: document.getElementById('telegramToken').value,
             telegramChannelId: document.getElementById('telegramChannel').value,
             positionSize: parseFloat(document.getElementById('positionSize').value)|| 100,
             minConfidence: parseInt(document.getElementById('minConfidence').value) || 80,
             takeProfit: parseFloat(document.getElementById('takeProfit').value) || 50,
             stopLoss: parseFloat(document.getElementById('stopLoss').value) || 10,
+            slippageTolerance: parseFloat(document.getElementById('slippageTolerance').value) || 1,
+            maxDailyTrades: parseInt(document.getElementById('maxDailyTrades').value) || 10,
             autoBuyEnabled: document.getElementById('autoBuyEnabled').checked,
-            autoBuyThreshold: parseInt(document.getElementById('autoBuyThreshold').value) || 85
+            autoBuyThreshold: parseInt(document.getElementById('autoBuyThreshold').value) || 85,
+            rpc: {
+                base: document.getElementById('rpcBase').value,
+                ethereum: document.getElementById('rpcEthereum').value,
+                bnb: document.getElementById('rpcBnb').value,
+                solana: document.getElementById('rpcSolana').value,
+                zora: document.getElementById('rpcZora').value
+            }
         };
-        
-        this.socket.emit('startBot', settings);
-        this.addLog('🚀 Starting BASECRAB...', 'success');
-    }
     
     stopBot() {
         this.socket.emit('stopBot');
@@ -168,6 +186,53 @@ class BaseCrabDashboard {
         const chain = document.querySelector('.chain-btn.active').dataset.chain;
         this.socket.emit('scanMarket', { chain });
         this.addLog(`🔍 Scanning ${chain.toUpperCase()} market...`, 'info');
+    }
+    
+    // ========== AI HUNTER ==========
+    startAIHunt() {
+        const chain = document.querySelector('#ai-hunter .chain-btn.active').dataset.chain;
+        this.socket.emit('startAIHunt', { chain });
+        this.addLog(`🤖 Starting AI hunt on ${chain.toUpperCase()}...`, 'info');
+    }
+
+    renderAIHunterWallets() {
+        const container = document.getElementById('aiHunterWallets');
+        const aiHunterActiveWallets = this.wallets.filter(w => w.aiHunterEnabled);
+
+        if (!aiHunterActiveWallets || aiHunterActiveWallets.length === 0) {
+            container.innerHTML = '<div class="empty-state">No wallets configured for AI Hunter</div>';
+            return;
+        }
+        
+        container.innerHTML = aiHunterActiveWallets.map(w => `
+            <div class="signal-item">
+                <div class="signal-info">
+                    <span class="signal-token">${w.label}</span>
+                    <span class="signal-chain">${w.chain.toUpperCase()}</span>
+                </div>
+                <span class="signal-confidence">${w.balance ? '$' + w.balance.toFixed(4) : 'Loading...'}</span>
+            </div>
+        `).join('');
+    }
+
+    addAIHunterSignal(signal) {
+        const container = document.getElementById('aiHunterSignals');
+        if (container.querySelector('.empty-state')) {
+            container.innerHTML = '';
+        }
+        
+        const el = document.createElement('div');
+        el.className = 'signal-item';
+        el.innerHTML = `
+            <div class="signal-info">
+                <span class="signal-token">${signal.token}</span>
+                <span class="signal-chain">AI Hunter | ${signal.chain.toUpperCase()} | ${signal.recommendation}</span>
+            </div>
+            <span class="signal-confidence ${signal.confidence >= 90 ? 'high' : ''}">${signal.confidence}%</span>
+            <button class="btn btn-success" onclick="dashboard.buyByToken('${signal.token}')">Buy</button>
+        `;
+        container.insertBefore(el, container.firstChild);
+        this.addLog(`🧠 AI Hunter found: ${signal.token}`, 'success');
     }
     
     // ========== WHALE WATCH ==========
@@ -310,9 +375,19 @@ class BaseCrabDashboard {
                     <span class="signal-token">${w.label}</span>
                     <span class="signal-chain">${w.chain.toUpperCase()}</span>
                 </div>
-                <span class="signal-confidence">${w.balance ? '$' + w.balance.toFixed(4) : 'Loading...'}</span>
+                <div class="wallet-actions">
+                    <label class="switch">
+                        <input type="checkbox" ${w.aiHunterEnabled ? 'checked' : ''} onchange="dashboard.toggleAIHunterWallet('${w.id}')">
+                        <span class="slider round"></span>
+                    </label>
+                    <span class="signal-confidence">${w.balance ? '$' + w.balance.toFixed(4) : 'Loading...'}</span>
+                </div>
             </div>
         `).join('');
+    }
+
+    toggleAIHunterWallet(walletId) {
+        this.socket.emit('toggleAIHunterWallet', { id: walletId });
     }
     
     // ========== TRADING ==========
@@ -394,14 +469,24 @@ class BaseCrabDashboard {
             aiApiKey: document.getElementById('aiApiKey').value,
             aiProvider: document.getElementById('aiProvider').value,
             aiModel: document.getElementById('aiModel').value,
+            birdeyeApiKey: document.getElementById('birdeyeApiKey').value,
             telegramBotToken: document.getElementById('telegramToken').value,
             telegramChannelId: document.getElementById('telegramChannel').value,
             positionSize: parseFloat(document.getElementById('positionSize').value) || 100,
             minConfidence: parseInt(document.getElementById('minConfidence').value) || 80,
             takeProfit: parseFloat(document.getElementById('takeProfit').value) || 50,
             stopLoss: parseFloat(document.getElementById('stopLoss').value) || 10,
+            slippageTolerance: parseFloat(document.getElementById('slippageTolerance').value) || 1,
+            maxDailyTrades: parseInt(document.getElementById('maxDailyTrades').value) || 10,
             autoBuyEnabled: document.getElementById('autoBuyEnabled').checked,
-            autoBuyThreshold: parseInt(document.getElementById('autoBuyThreshold').value) || 85
+            autoBuyThreshold: parseInt(document.getElementById('autoBuyThreshold').value) || 85,
+            rpc: {
+                base: document.getElementById('rpcBase').value,
+                ethereum: document.getElementById('rpcEthereum').value,
+                bnb: document.getElementById('rpcBnb').value,
+                solana: document.getElementById('rpcSolana').value,
+                zora: document.getElementById('rpcZora').value
+            }
         };
         
         this.socket.emit('saveSettings', settings);

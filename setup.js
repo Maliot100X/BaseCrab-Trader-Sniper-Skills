@@ -42,6 +42,7 @@ async function main() {
     const aiProvider = await question('🤖 AI Provider (openai, deepseek, anthropic, minimax, groq): ');
     const aiApiKey = await question('🔑 AI API Key: ');
     const aiModel = await question('🧠 AI Model (e.g., gpt-4, claude-3-opus-20240229): ');
+    const birdeyeApiKey = await question('🐦 Birdeye API Key (optional): ');
 
     console.log('\n--- Telegram Configuration ---');
     const telegramBotToken = await question('📱 Telegram Bot Token (optional): ');
@@ -54,11 +55,23 @@ async function main() {
     const rpcSolana = await question(`- Solana RPC [https://api.mainnet-beta.solana.com]: `) || 'https://api.mainnet-beta.solana.com';
     const rpcZora = await question(`- Zora RPC [https://rpc.zora.energy]: `) || 'https://rpc.zora.energy';
 
+    console.log('\n--- Trading Configuration ---');
+    const minConfidence = await question(`🎯 Minimum Signal Confidence (80-99) [80]: `) || '80';
+    const positionSize = await question(`💰 Default Position Size (USD) [100]: `) || '100';
+    const takeProfit = await question(`📈 Take Profit (%) [50]: `) || '50';
+    const stopLoss = await question(`📉 Stop Loss (%) [10]: `) || '10';
+    const slippageTolerance = await question(`🕳️ Slippage Tolerance (%) [1]: `) || '1';
+    const maxDailyTrades = await question(`🗓️ Max Daily Trades [10]: `) || '10';
+    const autoBuyEnabled = await question(`🤖 Enable Auto-Buy (true/false) [false]: `) || 'false';
+    const autoBuyThreshold = await question(`🚨 Auto-Buy Confidence Threshold (70-99) [85]: `) || '85';
+
+
     const envContent = `
 # AI Configuration
 AI_PROVIDER=${aiProvider}
 AI_API_KEY=${aiApiKey}
 AI_MODEL=${aiModel}
+BIRDEYE_API_KEY=${birdeyeApiKey}
 
 # Telegram Configuration
 TELEGRAM_BOT_TOKEN=${telegramBotToken}
@@ -72,12 +85,14 @@ RPC_SOLANA=${rpcSolana}
 RPC_ZORA=${rpcZora}
 
 # Trading Configuration
-MIN_CONFIDENCE=80
-POSITION_SIZE=100
-TAKE_PROFIT=50
-STOP_LOSS=10
-AUTO_BUY_ENABLED=false
-AUTO_BUY_THRESHOLD=85
+MIN_CONFIDENCE=${minConfidence}
+POSITION_SIZE=${positionSize}
+TAKE_PROFIT=${takeProfit}
+STOP_LOSS=${stopLoss}
+SLIPPAGE_TOLERANCE=${slippageTolerance}
+MAX_DAILY_TRADES=${maxDailyTrades}
+AUTO_BUY_ENABLED=${autoBuyEnabled}
+AUTO_BUY_THRESHOLD=${autoBuyThreshold}
 `;
 
     fs.writeFileSync(envPath, envContent);

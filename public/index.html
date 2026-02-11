@@ -32,6 +32,7 @@
                 <nav class="nav-menu">
                     <button class="nav-item active" data-tab="dashboard">📊 Dashboard</button>
                     <button class="nav-item" data-tab="scanner">🔍 Scanner</button>
+                    <button class="nav-item" data-tab="ai-hunter">🤖 AI Hunter</button>
                     <button class="nav-item" data-tab="whales">🐋 Whale Watch</button>
                     <button class="nav-item" data-tab="sniper">🎯 Sniper</button>
                     <button class="nav-item" data-tab="wallets">👛 Wallets</button>
@@ -75,10 +76,28 @@
                             <button class="chain-btn" data-chain="ethereum">Ethereum</button>
                             <button class="chain-btn" data-chain="bnb">BNB Chain</button>
                             <button class="chain-btn" data-chain="solana">Solana</button>
+                            <button class="chain-btn" data-chain="zora">Zora</button>
                         </div>
                         <button class="btn btn-primary" id="scanBtn">🔄 SCAN NOW</button>
                     </div>
                     <div class="panel"><h3>📊 Scan Results</h3><div id="scanResults"><div class="empty-state">Click "Scan Now" to search for tokens</div></div></div>
+                </section>
+
+                <!-- AI HUNTER TAB -->
+                <section class="tab-content" id="ai-hunter">
+                    <h2>🤖 AI Auto-Signal Hunter</h2>
+                    <div class="hunter-controls">
+                        <div class="chain-selector">
+                            <button class="chain-btn active" data-chain="base">Base</button>
+                            <button class="chain-btn" data-chain="ethereum">Ethereum</button>
+                            <button class="chain-btn" data-chain="bnb">BNB Chain</button>
+                            <button class="chain-btn" data-chain="solana">Solana</button>
+                            <button class="chain-btn" data-chain="zora">Zora</button>
+                        </div>
+                        <button class="btn btn-primary" id="aiHuntBtn">🚀 START AI HUNT</button>
+                    </div>
+                    <div class="panel"><h3>🧠 AI Hunter Signals</h3><div id="aiHunterSignals"><div class="empty-state">Start AI Hunter to find signals</div></div></div>
+                    <div class="panel"><h3>💼 Followed Wallets</h3><div id="aiHunterWallets"><div class="empty-state">Add wallets to follow AI signals</div></div></div>
                 </section>
 
                 <!-- WHALE WATCH TAB -->
@@ -131,15 +150,13 @@
                     <h2>👛 Wallets</h2>
                     <div class="panel">
                         <h3>➕ Add Wallet</h3>
-                        <div class="notice notice-danger">
-                            <strong>🚨 Security Warning:</strong> Never expose your private key. Anyone with your private key can steal your assets. This is for testing purposes only.
-                        </div>
                         <div class="wallet-form">
                             <select id="walletChain">
                                 <option value="base">Base</option>
                                 <option value="ethereum">Ethereum</option>
                                 <option value="bnb">BNB Chain</option>
                                 <option value="solana">Solana</option>
+                                <option value="zora">Zora</option>
                             </select>
                             <input type="text" id="walletAddress" placeholder="Wallet Address (0x...)">
                             <input type="password" id="walletPrivateKey" placeholder="Private Key">
@@ -171,6 +188,9 @@
                             <div class="setting-item"><label>Model</label>
                                 <input type="text" id="aiModel" value="gpt-4" placeholder="Model name">
                             </div>
+                            <div class="setting-item-full"><label>Birdeye API Key</label>
+                                <input type="password" id="birdeyeApiKey" placeholder="Enter your Birdeye API key">
+                            </div>
                         </div>
                     </div>
                     <div class="panel">
@@ -199,6 +219,12 @@
                             <div class="setting-item"><label>Stop Loss (%)</label>
                                 <input type="number" id="stopLoss" value="10">
                             </div>
+                            <div class="setting-item"><label>Slippage Tolerance (%)</label>
+                                <input type="number" id="slippageTolerance" value="1" step="0.1">
+                            </div>
+                            <div class="setting-item"><label>Max Daily Trades</label>
+                                <input type="number" id="maxDailyTrades" value="10">
+                            </div>
                         </div>
                         <div class="setting-item-full" style="margin-top:15px">
                             <label>Auto-Buy Threshold</label>
@@ -208,6 +234,26 @@
                         <label class="checkbox-label" style="margin-top:10px">
                             <input type="checkbox" id="autoBuyEnabled"> Enable Auto-Buy
                         </label>
+                    </div>
+                    <div class="panel">
+                        <h3>🌐 RPC Endpoints</h3>
+                        <div class="settings-grid">
+                            <div class="setting-item-full"><label>Base RPC</label>
+                                <input type="text" id="rpcBase" value="https://base-mainnet.public.blastapi.io">
+                            </div>
+                            <div class="setting-item-full"><label>Ethereum RPC</label>
+                                <input type="text" id="rpcEthereum" value="https://eth.public-rpc.com">
+                            </div>
+                            <div class="setting-item-full"><label>BNB Chain RPC</label>
+                                <input type="text" id="rpcBnb" value="https://bsc.publicnode.com">
+                            </div>
+                            <div class="setting-item-full"><label>Solana RPC</label>
+                                <input type="text" id="rpcSolana" value="https://api.mainnet-beta.solana.com">
+                            </div>
+                            <div class="setting-item-full"><label>Zora RPC</label>
+                                <input type="text" id="rpcZora" value="https://rpc.zora.energy">
+                            </div>
+                        </div>
                     </div>
                     <button class="btn btn-success btn-large" id="saveSettingsBtn">💾 SAVE SETTINGS</button>
                 </section>

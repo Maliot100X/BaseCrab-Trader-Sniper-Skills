@@ -53,6 +53,10 @@
     "express": "^4.22.1",
     "kill-port": "^2.0.1",
     "socket.io": "^4.8.3",
+    "@uniswap/sdk-core": "^4.0.0",
+    "@uniswap/v3-sdk": "^3.9.0",
+    "@jup-ag/api": "^6.0.0",
+    "web3": "^4.0.0",
     "uuid": "^9.0.1"
   }
 }
