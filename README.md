@@ -1,6 +1,12 @@
-# 🦀 BASECRAB v3.0.0 - Global Autonomous Trading Intelligence Agent
-
+# 🦀 BASECRAB v4.0.0 - Global Autonomous Trading Intelligence Agent
 **Production-Grade • Cross-Chain • AI-Powered Trading System**
+
+![BASECRAB Banner](assets/banner.png)
+
+---
+##  socials
+- **Twitter/X**: [@VoidDrillersX](https://x.com/VoidDrillersX)
+- **Telegram**: [BASECRAB](https://t.me/BASECRAB)
 
 ---
 
@@ -27,7 +33,7 @@
 BASECRAB is a professional trading intelligence system that monitors markets in real-time, identifies high-probability trading opportunities, and optionally executes trades automatically. It integrates multiple data sources and supports 5 blockchain networks.
 
 **Key Features:**
-- 🔍 Real-time market scanning (DEX Screener, Birdeye, DEXTV, Pump.fun)
+- 🔍 Real-time market scanning (DEX Screener, Birdeye)
 - 🧠 AI-powered signal analysis with configurable confidence thresholds
 - ⚡ Auto-scalping with take-profit and stop-loss automation
 - 🌐 Multi-chain support (Base, Ethereum, BNB, Solana, Zora)
@@ -74,11 +80,17 @@ npm start
 ## 📦 Available Commands
 
 ```bash
-npm run dev          # Start dashboard on localhost:3000
-npm start            # Production start
-npm run setup        # Initialize configuration
-npm test            # Test configuration
-npm run push         # Commit & push updates
+# Start the development server and open the dashboard
+npm run dev
+
+# Start the bot in production mode
+npm start
+
+# Run the initial setup wizard
+npm run setup
+
+# Open the browser to the dashboard
+npm open baseclaw
 ```
 
 ---
@@ -129,8 +141,7 @@ BASECRAB works with any AI API provider. Configure in Settings tab:
 ### Data Sources
 - **DEX Screener** - Token prices & liquidity
 - **Birdeye** - Multi-chain market data
-- **DEXTV** - Trading volumes & activity
-- **Pump.fun** - BNB meme coin launches
+
 
 ---
 
@@ -307,10 +318,6 @@ Contributions welcome! Please read CONTRIBUTING.md in .github folder.
 
 ## 📞 Support
 
-### Developer
-- **Twitter/X**: [@VoidDrillersX](https://x.com/VoidDrillersX)
-- **Telegram**: [BASECRAB](https://t.me/BASECRAB)
-
 ### Resources
 - **GitHub**: https://github.com/Maliot100X/BaseCrab-Trader-Sniper-Skills
 - **Issues**: Report bugs on GitHub Issues
@@ -347,7 +354,7 @@ The developers are not responsible for:
 ## ❤️ Credits
 
 - **Developer**: VoidDrillersX
-- **Data Providers**: DEX Screener, Birdeye, DEXTV, Pump.fun
+- **Data Providers**: DEX Screener, Birdeye
 - **Blockchains**: Base, Ethereum, BNB, Solana, Zora
 - **AI Providers**: OpenAI, Anthropic, MiniMax, DeepSeek, Groq
 
@@ -356,4 +363,3 @@ The developers are not responsible for:
 **🦀 BASECRAB: Wait. Confirm. Strike.**
 
 Made with ❤️ by VoidDrillersX
-

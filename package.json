@@ -1,14 +1,13 @@
 {
   "name": "basecrab-trader-sniper-skills",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "🦀 BASECRAB - Global Autonomous Trading Intelligence Agent. Production-grade cross-chain trading system with auto-scalping AI.",
   "main": "server.js",
   "scripts": {
-    "dev": "node server.js",
+    "dev": "kill-port 3000 && node server.js",
     "start": "node server.js",
     "setup": "node setup.js",
-    "open": "node server.js && start http://localhost:3000",
-    "install": "npm install express socket.io cors axios dotenv uuid",
+    "open:baseclaw": "npm start",
     "test": "echo BASECRAB system ready! Run npm start to launch.",
     "push": "git add -A && git commit -m 'Update' && git push origin master"
   },
@@ -46,10 +45,13 @@
     "node": ">=22.0.0"
   },
   "dependencies": {
+    "@solana/web3.js": "^1.95.1",
     "axios": "^1.13.5",
     "cors": "^2.8.6",
     "dotenv": "^16.6.1",
+    "ethers": "^6.13.1",
     "express": "^4.22.1",
+    "kill-port": "^2.0.1",
     "socket.io": "^4.8.3",
     "uuid": "^9.0.1"
   }

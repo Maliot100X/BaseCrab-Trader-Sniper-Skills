@@ -1,0 +1,13 @@
+{
+  "minConfidence": 80,
+  "positionSize": 100,
+  "takeProfit": 50,
+  "stopLoss": 10,
+  "autoBuyEnabled": true,
+  "autoBuyThreshold": 85,
+  "aiApiKey": "12345",
+  "aiProvider": "openai",
+  "aiModel": "gpt-4",
+  "telegramBotToken": "",
+  "telegramChannelId": "vejseliminir@gmail.com"
+}
